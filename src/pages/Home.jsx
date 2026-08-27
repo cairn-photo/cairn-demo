@@ -13,6 +13,11 @@ export default function Home() {
 
   return (
     <section className="screen screen-dark">
+      <header className="status-row">
+        <span>9:41</span>
+        <span className="status-icons">▮▮▮ ◍ ▰</span>
+      </header>
+
       <header className="top-chips">
         <button className="chip chip-active" type="button">
           Everyone
@@ -26,8 +31,8 @@ export default function Home() {
       </header>
 
       <div className="city-progress">
-        <p className="label">City lit</p>
-        <p>{route.coverage}%</p>
+        <p className="label">CITY LIT</p>
+        <p className="city-value">{route.coverage}%</p>
         <div className="meter">
           <span style={{ width: `${route.coverage}%` }} />
         </div>
@@ -35,18 +40,23 @@ export default function Home() {
 
       <Map theme="dark" pins={mapPins} />
 
-      <footer className="panel panel-dark">
-        <h2>Map Home</h2>
-        <p>Tap a pin to open a spot, or start recording a new route.</p>
-        <div className="actions-grid">
+      <div className="map-helpers">
+        <span>Tap a pin →</span>
+        <span>◎ Locate</span>
+      </div>
+
+      <div className="map-note">
+        <h1>Cairn</h1>
+        <p>Mark the spot. Light the map.</p>
+        <div className="map-links">
           <Link className="btn btn-light" to={`/spot/${spots[0].id}`}>
             Open spot
           </Link>
           <Link className="btn btn-primary" to="/upload">
-            Upload flow
+            Start recording
           </Link>
         </div>
-      </footer>
+      </div>
     </section>
   )
 }

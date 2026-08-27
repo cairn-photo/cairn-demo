@@ -52,25 +52,44 @@
   color: #eef1f5;
 }
 
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px 0;
+  font-family: 'SF Mono', 'Roboto Mono', ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  color: #6c737c;
+}
+
+.status-icons {
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
 .top-chips,
 .chip-row {
   display: flex;
   gap: 8px;
-  padding: 14px 16px 8px;
+  padding: 12px 16px 8px;
 }
 
 .chip {
-  border: 1px solid rgb(120 126 134 / 35%);
+  border: 1px solid rgb(120 126 134 / 30%);
   background: transparent;
   color: inherit;
-  border-radius: 16px;
-  padding: 5px 11px;
-  font-size: 12px;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  font-family: 'SF Mono', 'Roboto Mono', ui-monospace, monospace;
 }
 
 .chip-active {
-  border-color: #c8922f;
-  color: #c8922f;
+  background: #ededf0;
+  color: #15171a;
+  border-color: #ededf0;
 }
 
 .chip-right {
@@ -79,27 +98,37 @@
 
 .city-progress {
   margin: 0 16px 8px;
-  border: 1px solid #2e3139;
-  border-radius: 10px;
-  padding: 10px 12px;
+  border: 1px solid #2c3137;
+  border-radius: 12px;
+  padding: 10px 12px 11px;
   display: grid;
   grid-template-columns: 1fr auto;
   row-gap: 8px;
-  background: rgb(8 10 12 / 25%);
+  background: rgb(12 14 17 / 72%);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 2%) inset;
 }
 
 .label {
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 11px;
+  letter-spacing: 1.4px;
+  font-size: 10px;
   margin: 0;
-  color: #8d949c;
+  color: #7a818a;
+  font-family: 'SF Mono', 'Roboto Mono', ui-monospace, monospace;
+}
+
+.city-value {
+  margin: 0;
+  color: #c8922f;
+  font-family: 'SF Mono', 'Roboto Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 1.3px;
 }
 
 .meter {
   grid-column: 1 / -1;
-  height: 4px;
-  background: #293039;
+  height: 3px;
+  background: #2a3037;
   border-radius: 999px;
   overflow: hidden;
 }
@@ -208,16 +237,20 @@
 }
 
 .map-surface {
-  height: 380px;
-  margin: 6px 12px 12px;
-  border-radius: 14px;
+  flex: 1;
+  min-height: 520px;
+  margin: 6px 0 0;
+  border-radius: 0;
   overflow: hidden;
   position: relative;
-  border: 1px solid #2a2f36;
+  border: none;
 }
 
 .map-dark {
-  background: #13171c;
+  background:
+    radial-gradient(circle at 30% 20%, rgb(74 80 88 / 12%) 0, transparent 20%),
+    radial-gradient(circle at 62% 54%, rgb(74 80 88 / 10%) 0, transparent 16%),
+    #13171c;
   color: #c8922f;
 }
 
@@ -230,45 +263,77 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to right, rgb(44 50 60 / 35%) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(44 50 60 / 35%) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(to right, rgb(52 58 67 / 35%) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(52 58 67 / 35%) 1px, transparent 1px);
+  background-size: 96px 96px;
+  opacity: 0.28;
+}
+
+.map-hex {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(30deg, rgb(38 43 50 / 45%) 12%, transparent 12.5%, transparent 87%, rgb(38 43 50 / 45%) 87.5%, rgb(38 43 50 / 45%)),
+    linear-gradient(150deg, rgb(38 43 50 / 45%) 12%, transparent 12.5%, transparent 87%, rgb(38 43 50 / 45%) 87.5%, rgb(38 43 50 / 45%)),
+    linear-gradient(30deg, rgb(38 43 50 / 45%) 12%, transparent 12.5%, transparent 87%, rgb(38 43 50 / 45%) 87.5%, rgb(38 43 50 / 45%)),
+    linear-gradient(150deg, rgb(38 43 50 / 45%) 12%, transparent 12.5%, transparent 87%, rgb(38 43 50 / 45%) 87.5%, rgb(38 43 50 / 45%));
+  background-size: 34px 30px;
+  background-position: 0 0, 0 0, 17px 15px, 17px 15px;
+  opacity: 0.18;
 }
 
 .map-glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(10px);
+  filter: blur(16px);
 }
 
 .map-glow-a {
-  width: 140px;
-  height: 140px;
-  left: 25%;
-  top: 30%;
-  background: rgb(65 72 80 / 40%);
+  width: 180px;
+  height: 180px;
+  left: 18%;
+  top: 23%;
+  background: rgb(66 72 80 / 42%);
 }
 
 .map-glow-b {
-  width: 95px;
-  height: 95px;
-  left: 55%;
-  top: 56%;
-  background: rgb(65 72 80 / 35%);
+  width: 120px;
+  height: 120px;
+  left: 56%;
+  top: 51%;
+  background: rgb(66 72 80 / 30%);
+}
+
+.map-bend {
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  bottom: 18%;
+  height: 46px;
+  border-top: 10px solid rgb(56 62 71 / 24%);
+  border-radius: 50%;
+  transform: rotate(-7deg);
+  opacity: 0.9;
 }
 
 .map-pin {
   position: absolute;
-  width: 24px;
-  height: 24px;
-  margin: -12px 0 0 -12px;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 11px;
+  font-family: 'SF Mono', 'Roboto Mono', ui-monospace, monospace;
+  font-size: 10px;
   background: #e6eaee;
   color: #121519;
-  font-weight: 700;
+  font-weight: 500;
+  box-shadow: 0 0 0 8px rgb(255 255 255 / 2%), 0 0 18px rgb(255 255 255 / 8%);
+}
+
+.map-pin span {
+  transform: translateY(0.5px);
 }
 
 .map-pin-highlight {
@@ -280,6 +345,61 @@
   position: absolute;
   inset: 0;
   color: #c8922f;
+}
+
+.map-helpers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px 10px;
+  font-family: 'SF Mono', 'Roboto Mono', ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #6d747d;
+}
+
+.map-helpers span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 8px;
+  border: 1px solid rgb(120 126 134 / 28%);
+  border-radius: 999px;
+}
+
+.map-note {
+  margin: 0 16px 84px;
+  display: grid;
+  gap: 6px;
+}
+
+.map-note h1 {
+  margin: 0;
+  font-family: Inter, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  color: #edeff2;
+  text-align: center;
+}
+
+.map-note p {
+  margin: 0;
+  font-family: Inter, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #8a929b;
+  text-align: center;
+}
+
+.map-links {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.map-links .btn {
+  padding-block: 12px;
 }
 
 .upload-header {
