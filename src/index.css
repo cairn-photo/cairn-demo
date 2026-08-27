@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Avenir Next', 'Segoe UI', sans-serif;
+  background:
+    radial-gradient(circle at 10% 15%, #f6ecd4 0, transparent 42%),
+    radial-gradient(circle at 85% 85%, #ddd6c2 0, transparent 40%),
+    #e9e7de;
+  color: #1a1a18;
+}

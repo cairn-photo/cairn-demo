@@ -1,42 +1,52 @@
-# cairn-demo
-Interactive React prototype for Cairn - A photographers' social map.
+# Cairn Demo
 
-## Getting Started
+Wireframe based iOS-size demo built with React + Vite.
 
-### Prerequisites
-- Node.js 18+
-- npm or yarn
+## Included Pages
 
-### Installation
-\`\`\`bash
-git clone https://github.com/cairn-photo/cairn-demo.git
-cd cairn-demo
-npm install
-npm run dev
-\`\`\`
-
-Open http://localhost:5173
+- Home: map screen
+- Upload: 3-step upload flow
+- Spot: spot detail sheet
+- PathDetail: route detail page
 
 ## Project Structure
 
-- **pages/** - Main screens (map, upload, spot detail, etc)
-- **components/** - Reusable React components
-- **data/mockData.js** - Mock data for testing
+src/
 
-## Design Reference
+- pages/
+	- Home.jsx
+	- Upload.jsx
+	- Spot.jsx
+	- PathDetail.jsx
+- components/
+	- Map.jsx
+	- PhotoCard.jsx
+- data/
+	- mockData.js
+- App.jsx
 
-- [Figma Prototype](https://figma.com/...) - Interactive wireframe
-- [Product Spec](../docs/spec.md) - Full requirements
+## Run
 
-## Contributing
+1. Install deps
 
-1. Create a feature branch: `git checkout -b feature/your-feature`
-2. Commit: `git commit -m "feat: description"`
-3. Push: `git push origin feature/your-feature`
-4. Open a Pull Request
+	 npm install
+
+2. Start dev server
+
+	 npm run dev
+
+3. Build check
+
+	 npm run build
+
+## Routes
+
+- /
+- /upload
+- /spot/jericho-pier
+- /path/west-side-golden-hour
 
 ## Notes
 
-- This is a prototype for UX validation
-- Data is mocked; real API integration comes in cairn-web
-- For technical decisions, see [Tech Architecture](../docs/tech.md)
+- Main viewport is designed around 375x812 (iPhone style shell).
+- On narrow screens the frame expands to full viewport.
