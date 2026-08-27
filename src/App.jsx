@@ -1,38 +1,65 @@
-import { BrowserRouter, Link, NavLink, Outlet, Route, Routes } from 'react-router-dom'
-import Home from './pages/Home'
+import { BrowserRouter, Link, NavLink, Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import Launch from './pages/Launch'
+import MapPage from './pages/MapPage'
+import Calendar from './pages/Calendar'
+import Community from './pages/Community'
+import Profile from './pages/Profile'
+import RecordIntro from './pages/RecordIntro'
+import RecordActive from './pages/RecordActive'
 import Upload from './pages/Upload'
 import Spot from './pages/Spot'
 import PathDetail from './pages/PathDetail'
 import './App.css'
 
 function PhoneLayout() {
+  const location = useLocation()
+  const showShellChrome =
+    location.pathname === '/map' ||
+    location.pathname === '/calendar' ||
+    location.pathname === '/community' ||
+    location.pathname === '/profile' ||
+    location.pathname === '/record' ||
+    location.pathname === '/recording' ||
+    location.pathname.startsWith('/spot/')
+  const showRecordFab = location.pathname === '/map'
+
   return (
     <div className="demo-stage">
       <div className="phone-frame">
         <div className="phone-notch" aria-hidden="true" />
 
-        <main className="phone-screen">
+        <main className={`phone-screen ${showShellChrome ? 'has-shell-chrome' : ''}`}>
           <Outlet />
         </main>
 
-        <nav className="tab-bar" aria-label="Primary navigation">
-          <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/">
-            Map
-          </NavLink>
-          <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/upload">
-            Upload
-          </NavLink>
-          <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/spot/jericho-pier">
-            Spot
-          </NavLink>
-          <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/path/west-side-golden-hour">
-            Path
-          </NavLink>
-        </nav>
+        {showShellChrome ? (
+          <>
+            <nav className="tab-bar" aria-label="Primary navigation">
+              <NavLink className={({ isActive }) => (isActive ? 'active tab-item' : 'tab-item')} to="/map">
+                <span className="tab-icon" aria-hidden="true" />
+                <span className="tab-label">MAP</span>
+              </NavLink>
+              <NavLink className={({ isActive }) => (isActive ? 'active tab-item' : 'tab-item')} to="/calendar">
+                <span className="tab-icon" aria-hidden="true" />
+                <span className="tab-label">CALENDAR</span>
+              </NavLink>
+              <NavLink className={({ isActive }) => (isActive ? 'active tab-item' : 'tab-item')} to="/community">
+                <span className="tab-icon" aria-hidden="true" />
+                <span className="tab-label">COMMUNITY</span>
+              </NavLink>
+              <NavLink className={({ isActive }) => (isActive ? 'active tab-item' : 'tab-item')} to="/profile">
+                <span className="tab-icon" aria-hidden="true" />
+                <span className="tab-label">PROFILE</span>
+              </NavLink>
+            </nav>
 
-        <Link className="record-fab" to="/upload">
-          Record
-        </Link>
+            {showRecordFab ? (
+              <Link className="record-fab" to="/record">
+                <span className="record-fab-core" aria-hidden="true" />
+              </Link>
+            ) : null}
+          </>
+        ) : null}
       </div>
     </div>
   )
@@ -43,7 +70,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<PhoneLayout />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Launch />} />
+          <Route path="/map" element={<MapPage />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/record" element={<RecordIntro />} />
+          <Route path="/recording" element={<RecordActive />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/spot/:spotId" element={<Spot />} />
           <Route path="/path/:pathId" element={<PathDetail />} />

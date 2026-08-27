@@ -45,11 +45,11 @@ export default function PathDetail() {
       </section>
 
       <footer className="path-footer">
-        <Link className="btn btn-light" to="/">
+        <Link className="btn btn-light" to="/calendar">
           Save route
         </Link>
-        <Link className="btn btn-primary" to="/upload">
-          Publish another
+        <Link className="btn btn-primary" to="/community">
+          Share
         </Link>
       </footer>
     </section>

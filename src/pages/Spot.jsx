@@ -28,7 +28,7 @@ export default function Spot() {
         <PhotoCard title="Wide option" subtitle="Try lower perspective for foreground texture." meta={spot.lens} />
 
         <div className="actions-grid">
-          <Link className="btn btn-light" to="/">
+          <Link className="btn btn-light" to="/map">
             Back to map
           </Link>
           <Link className="btn btn-primary" to="/upload">

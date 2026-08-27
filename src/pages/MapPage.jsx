@@ -1,7 +1,7 @@
 import Map from '../components/Map'
 import { route, spots } from '../data/mockData'
 
-export default function Home() {
+export default function MapPage() {
   const mapPins = spots.map((spot, index) => ({
     id: spot.id,
     label: index < 2 ? String(spot.photoCount) : '',
@@ -11,7 +11,7 @@ export default function Home() {
   }))
 
   return (
-    <section className="screen screen-dark">
+    <section className="screen screen-dark map-screen">
       <header className="status-row">
         <span>9:41</span>
         <span className="status-icons">▮▮▮ ◍ ▰</span>
