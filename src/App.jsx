@@ -21,16 +21,17 @@ function PhoneLayout() {
     location.pathname === '/record' ||
     location.pathname === '/recording' ||
     location.pathname.startsWith('/spot/')
-  const showRecordFab = location.pathname === '/map'
 
   return (
     <div className="demo-stage">
       <div className="phone-frame">
-        <div className="phone-notch" aria-hidden="true" />
-
         <main className={`phone-screen ${showShellChrome ? 'has-shell-chrome' : ''}`}>
           <Outlet />
         </main>
+
+        <Link className="record-fab" to="/record">
+          <span className="record-fab-core" aria-hidden="true" />
+        </Link>
 
         {showShellChrome ? (
           <>
@@ -52,12 +53,6 @@ function PhoneLayout() {
                 <span className="tab-label">PROFILE</span>
               </NavLink>
             </nav>
-
-            {showRecordFab ? (
-              <Link className="record-fab" to="/record">
-                <span className="record-fab-core" aria-hidden="true" />
-              </Link>
-            ) : null}
           </>
         ) : null}
       </div>

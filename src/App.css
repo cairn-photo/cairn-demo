@@ -16,18 +16,6 @@
   overflow: hidden;
 }
 
-.phone-notch {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 148px;
-  height: 28px;
-  transform: translateX(-50%);
-  border-radius: 0 0 16px 16px;
-  background: #111316;
-  z-index: 40;
-}
-
 .phone-screen {
   width: 100%;
   height: calc(100% - 24px);
@@ -219,7 +207,7 @@
 
 .map-surface {
   flex: 1;
-  min-height: 520px;
+  min-height: 480px;
   margin: 6px 0 0;
   border-radius: 0;
   overflow: hidden;
@@ -310,11 +298,17 @@
   opacity: 0.9;
 }
 
+.map-pin-wrap {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
 .map-pin {
   position: absolute;
+  left: 0;
+  top: 0;
   width: 30px;
   height: 30px;
-  margin: -15px 0 0 -15px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -323,7 +317,6 @@
   background: #e6eaee;
   color: #121519;
   font-weight: 500;
-  box-shadow: 0 0 0 8px rgb(255 255 255 / 2%), 0 0 18px rgb(255 255 255 / 8%);
 }
 
 .map-pin span {
@@ -333,6 +326,25 @@
 .map-pin-highlight {
   background: #c8922f;
   color: #1a1204;
+}
+
+.map-pin-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 96px;
+  height: 96px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(255 255 255 / 18%) 0, rgb(255 255 255 / 10%) 22%, rgb(255 255 255 / 0%) 68%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.map-pin-glow.highlight {
+  width: 110px;
+  height: 110px;
+  background: radial-gradient(circle, rgb(201 146 47 / 45%) 0, rgb(201 146 47 / 20%) 24%, rgb(201 146 47 / 0%) 72%);
 }
 
 .map-route {
@@ -345,7 +357,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 12px 10px;
+  padding: 0 12px 18px;
   font-family: 'SF Mono', 'Roboto Mono', ui-monospace, monospace;
   font-size: 9px;
   letter-spacing: 1.1px;
@@ -360,6 +372,10 @@
   border: 1px solid rgb(120 126 134 / 30%);
   border-radius: 999px;
   background: rgb(17 19 22 / 20%);
+}
+
+.map-screen {
+  padding-bottom: 76px;
 }
 
 
@@ -645,6 +661,41 @@
 .community-screen .community-card,
 .profile-screen .profile-card {
   margin: 16px 20px 0;
+}
+
+.community-card {
+  padding-top: 12px;
+}
+
+.community-preview {
+  display: grid;
+  gap: 14px;
+  padding: 8px 0 18px;
+}
+
+.community-preview-row {
+  display: grid;
+  grid-template-columns: 28px 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.community-preview-row span,
+.community-preview-card {
+  border-radius: 999px;
+  background: #ecebe5;
+  height: 10px;
+}
+
+.community-preview-row span:first-child {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.community-preview-card {
+  height: 150px;
+  border-radius: 12px;
 }
 
 .community-note {

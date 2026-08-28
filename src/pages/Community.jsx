@@ -5,8 +5,8 @@ export default function Community() {
     <section className="screen screen-light community-screen">
       <header className="path-header">
         <p className="label">COMMUNITY</p>
-        <h1>Coming in demo 2</h1>
-        <p>讚好、收藏、留言、追蹤與探索頁排在第二階段。</p>
+        <h1>Community</h1>
+        <p>Social features land in demo 2.</p>
       </header>
 
       <div className="panel community-card">
@@ -21,7 +21,16 @@ export default function Community() {
             Nearby
           </button>
         </div>
-        <p className="community-note">現在先在 Discord 見。</p>
+        <div className="community-preview" aria-hidden="true">
+          <div className="community-preview-row">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="community-preview-card" />
+          <div className="community-preview-card" />
+        </div>
+        <p className="community-note">Real posts, comments, and follows will live here later.</p>
         <Link className="btn btn-light" to="/map">
           Join the Discord
         </Link>

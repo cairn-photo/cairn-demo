@@ -54,12 +54,11 @@ export default function Map({ theme = 'dark', pins = [], pathPoints = [], showPa
       )}
 
       {pins.map((pin) => (
-        <div
-          className={`map-pin ${pin.highlight ? 'map-pin-highlight' : ''}`}
-          key={pin.id}
-          style={{ left: `${pin.x}%`, top: `${pin.y}%` }}
-        >
-          <span>{pin.label ?? ''}</span>
+        <div className="map-pin-wrap" key={pin.id} style={{ left: `${pin.x}%`, top: `${pin.y}%` }}>
+          <span className={`map-pin-glow ${pin.highlight ? 'highlight' : ''}`} aria-hidden="true" />
+          <div className={`map-pin ${pin.highlight ? 'map-pin-highlight' : ''}`}>
+            <span>{pin.label ?? ''}</span>
+          </div>
         </div>
       ))}
     </div>
