@@ -1,10 +1,11 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import Map from '../components/Map'
 import StatusBar from '../components/StatusBar'
 import { routePathPoints, spots } from '../data/mockData'
 
 export default function Spot() {
   const { spotId } = useParams()
+  const navigate = useNavigate()
   const spot = spots.find((item) => item.id === spotId) ?? spots[0]
 
   const pins = spots.map((item) => ({
@@ -20,6 +21,9 @@ export default function Spot() {
     <section className="screen screen-dark spot-screen">
       <div className="spot-map-layer">
         <StatusBar theme="dark" />
+        <button className="spot-back-button" onClick={() => navigate('/map')} type="button" aria-label="Back to map">
+          ←
+        </button>
         <Map theme="dark" pins={pins} pathPoints={routePathPoints} showPath />
       </div>
 

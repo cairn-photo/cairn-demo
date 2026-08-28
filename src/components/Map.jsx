@@ -1,4 +1,4 @@
-export default function Map({ theme = 'dark', pins = [], pathPoints = [], showPath = false }) {
+export default function Map({ theme = 'dark', pins = [], pathPoints = [], showPath = false, onPinClick }) {
   const isDark = theme === 'dark'
 
   return (
@@ -63,15 +63,23 @@ export default function Map({ theme = 'dark', pins = [], pathPoints = [], showPa
               aria-hidden="true"
             />
           )}
-          {pin.size === 'dot' ? (
-            <div className={`map-pin-dot ${pin.highlight ? 'accent' : ''}`} aria-hidden="true" />
-          ) : (
-            <div
-              className={`map-pin ${pin.size === 'lg' ? 'map-pin-lg' : 'map-pin-md'} ${pin.highlight ? 'map-pin-highlight' : ''}`}
-            >
-              <span>{pin.label ?? ''}</span>
-            </div>
-          )}
+
+          <button
+            className="map-pin-button"
+            onClick={() => onPinClick?.(pin)}
+            type="button"
+            aria-label={`Open ${pin.id} details`}
+          >
+            {pin.size === 'dot' ? (
+              <span className={`map-pin-dot ${pin.highlight ? 'accent' : ''}`} aria-hidden="true" />
+            ) : (
+              <span
+                className={`map-pin ${pin.size === 'lg' ? 'map-pin-lg' : 'map-pin-md'} ${pin.highlight ? 'map-pin-highlight' : ''}`}
+              >
+                {pin.label ?? ''}
+              </span>
+            )}
+          </button>
         </div>
       ))}
     </div>

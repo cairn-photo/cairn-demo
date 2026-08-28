@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Map from '../components/Map'
 import StatusBar from '../components/StatusBar'
 import { route, spots } from '../data/mockData'
 
 export default function MapPage() {
+  const navigate = useNavigate()
+
   const mapPins = spots.map((spot) => ({
     id: spot.id,
     label: spot.size === 'lg' || spot.size === 'md' ? String(spot.photoCount || '') : '',
@@ -12,6 +14,11 @@ export default function MapPage() {
     size: spot.size,
     highlight: spot.highlight,
   }))
+
+  const handlePinClick = (pin) => {
+    const nextPinId = pin?.id ?? 'jericho-pier'
+    navigate(`/spot/${nextPinId}`)
+  }
 
   return (
     <section className="screen screen-dark map-screen">
@@ -37,7 +44,7 @@ export default function MapPage() {
         </div>
       </div>
 
-      <Map theme="dark" pins={mapPins} />
+      <Map theme="dark" pins={mapPins} onPinClick={handlePinClick} />
 
       <div className="map-helpers">
         <Link to="/spot/jericho-pier">Tap a pin →</Link>

@@ -1,9 +1,10 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import StatusBar from '../components/StatusBar'
 import { route, spots } from '../data/mockData'
 
 export default function PathDetail() {
   const { pathId } = useParams()
+  const navigate = useNavigate()
   const isCurrentRoute = pathId === route.id
 
   return (
@@ -26,7 +27,7 @@ export default function PathDetail() {
       </header>
 
       <div className="path-actions">
-        <button className="btn btn-light" type="button">
+        <button className="btn btn-light" onClick={() => navigate('/map')} type="button">
           Save route
         </button>
         <Link className="btn btn-light" to="/community">
