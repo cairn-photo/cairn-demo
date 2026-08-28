@@ -24,7 +24,7 @@ export default function Spot() {
         <button className="spot-back-button" onClick={() => navigate('/map')} type="button" aria-label="Back to map">
           ←
         </button>
-        <Map theme="dark" pins={pins} pathPoints={routePathPoints} showPath />
+        <Map theme="dark" pins={pins} />
       </div>
 
       <div className="spot-sheet">
