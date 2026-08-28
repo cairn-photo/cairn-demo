@@ -13,10 +13,6 @@ export default function Map({ theme = 'dark', pins = [], pathPoints = [], showPa
               <stop offset="0%" stopColor="#3A3F46" />
               <stop offset="100%" stopColor="#15171A" />
             </radialGradient>
-            <radialGradient id="mapGlowB">
-              <stop offset="0%" stopColor="#3A3F46" />
-              <stop offset="100%" stopColor="#15171A" />
-            </radialGradient>
           </defs>
 
           <rect width="375" height="760" fill="#15171A" />
@@ -38,8 +34,6 @@ export default function Map({ theme = 'dark', pins = [], pathPoints = [], showPa
         </svg>
       ) : null}
 
-      {!isDark ? <div className="map-light-overlay" aria-hidden="true" /> : null}
-
       {showPath && pathPoints.length > 1 && (
         <svg className="map-route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
           <polyline
@@ -50,15 +44,34 @@ export default function Map({ theme = 'dark', pins = [], pathPoints = [], showPa
             strokeLinecap="round"
             strokeLinejoin="round"
           />
+          {showPath && (
+            <circle
+              cx={pathPoints[pathPoints.length - 1].x}
+              cy={pathPoints[pathPoints.length - 1].y}
+              r="2.2"
+              fill="currentColor"
+            />
+          )}
         </svg>
       )}
 
       {pins.map((pin) => (
         <div className="map-pin-wrap" key={pin.id} style={{ left: `${pin.x}%`, top: `${pin.y}%` }}>
-          <span className={`map-pin-glow ${pin.highlight ? 'highlight' : ''}`} aria-hidden="true" />
-          <div className={`map-pin ${pin.highlight ? 'map-pin-highlight' : ''}`}>
-            <span>{pin.label ?? ''}</span>
-          </div>
+          {pin.size !== 'dot' && (
+            <span
+              className={`map-pin-glow ${pin.size === 'lg' ? 'lg' : 'md'} ${pin.highlight ? 'highlight' : ''}`}
+              aria-hidden="true"
+            />
+          )}
+          {pin.size === 'dot' ? (
+            <div className={`map-pin-dot ${pin.highlight ? 'accent' : ''}`} aria-hidden="true" />
+          ) : (
+            <div
+              className={`map-pin ${pin.size === 'lg' ? 'map-pin-lg' : 'map-pin-md'} ${pin.highlight ? 'map-pin-highlight' : ''}`}
+            >
+              <span>{pin.label ?? ''}</span>
+            </div>
+          )}
         </div>
       ))}
     </div>

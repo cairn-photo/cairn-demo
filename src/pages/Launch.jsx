@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom'
 import Map from '../components/Map'
+import StatusBar from '../components/StatusBar'
 
 export default function Launch() {
   return (
     <section className="screen screen-dark launch-screen">
-      <header className="status-row">
-        <span>9:41</span>
-        <span className="status-icons">▮▮▮ ◍ ▰</span>
-      </header>
+      <StatusBar theme="dark" />
 
       <div className="launch-stage">
         <Map theme="dark" />
@@ -19,10 +17,10 @@ export default function Launch() {
       </div>
 
       <div className="launch-actions">
-        <Link className="btn btn-primary" to="/record">
+        <Link className="btn btn-primary btn-block" to="/sign-in">
           Get started
         </Link>
-        <Link className="btn btn-light" to="/map">
+        <Link className="btn btn-light btn-block btn-outline-dark" to="/map">
           Look around first
         </Link>
       </div>

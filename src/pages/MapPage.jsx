@@ -1,21 +1,21 @@
+import { Link } from 'react-router-dom'
 import Map from '../components/Map'
+import StatusBar from '../components/StatusBar'
 import { route, spots } from '../data/mockData'
 
 export default function MapPage() {
-  const mapPins = spots.map((spot, index) => ({
+  const mapPins = spots.map((spot) => ({
     id: spot.id,
-    label: index < 2 ? String(spot.photoCount) : '',
+    label: spot.size === 'lg' || spot.size === 'md' ? String(spot.photoCount || '') : '',
     x: spot.x,
     y: spot.y,
-    highlight: index > 0,
+    size: spot.size,
+    highlight: spot.highlight,
   }))
 
   return (
     <section className="screen screen-dark map-screen">
-      <header className="status-row">
-        <span>9:41</span>
-        <span className="status-icons">▮▮▮ ◍ ▰</span>
-      </header>
+      <StatusBar theme="dark" />
 
       <header className="top-chips">
         <button className="chip chip-active" type="button">
@@ -25,7 +25,7 @@ export default function MapPage() {
           Mine
         </button>
         <button className="chip chip-right" type="button">
-          Vancouver
+          Vancouver ▾
         </button>
       </header>
 
@@ -40,7 +40,7 @@ export default function MapPage() {
       <Map theme="dark" pins={mapPins} />
 
       <div className="map-helpers">
-        <span>Tap a pin →</span>
+        <Link to="/spot/jericho-pier">Tap a pin →</Link>
         <span>◎ Locate</span>
       </div>
     </section>

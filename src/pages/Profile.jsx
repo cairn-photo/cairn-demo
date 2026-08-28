@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom'
+import StatusBar from '../components/StatusBar'
 
 export default function Profile() {
   return (
-    <section className="screen screen-light profile-screen">
-      <header className="path-header">
-        <p className="label">PROFILE</p>
-        <h1>Andrew</h1>
+    <section className="screen screen-light">
+      <StatusBar theme="light" />
+
+      <header className="profile-header">
+        <h1>Super photographer</h1>
         <p>4 routes · 12 spots · Vancouver</p>
       </header>
 
-      <div className="panel profile-card">
+      <div className="profile-card">
         <div className="profile-avatar" aria-hidden="true" />
         <div>
           <h2>Route builder</h2>
@@ -17,11 +19,11 @@ export default function Profile() {
         </div>
       </div>
 
-      <div className="actions-grid profile-actions">
+      <div className="profile-actions btn-row-2">
         <Link className="btn btn-light" to="/map">
           Back to map
         </Link>
-        <Link className="btn btn-primary" to="/path/west-side-golden-hour">
+        <Link className="btn btn-primary-dark" to="/path/west-side-golden-hour">
           View route
         </Link>
       </div>
